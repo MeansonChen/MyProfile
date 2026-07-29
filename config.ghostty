@@ -2,9 +2,6 @@
 # https://ghostty.zerebos.com
 
 cursor-style-blink = false
-gtk-titlebar = false
-gtk-titlebar-style = tabs
-gtk-wide-tabs = false
 macos-icon = xray
 mouse-hide-while-typing = true
 quick-terminal-screen = mouse
