@@ -1,0 +1,40 @@
+tmux:
+    symbols:
+        branch: ""
+        hashprefix: ":"
+        ahead: ↑·
+        behind: ↓·
+        staged: "● "
+        conflict: "✖ "
+        modified: "✚ "
+        untracked: "… "
+        stashed: "⚑ "
+        insertions: Σ
+        deletions: Δ
+        clean: ✔
+
+    styles:
+        clear: "#[fg=#000000,bg=cyan]"
+        state: "#[fg=#000000,bg=cyan,bold]"
+        branch: "#[fg=#000000,bg=cyan,bold]"
+        remote: "#[fg=#000000,bg=cyan]"
+        divergence: "#[fg=#000000,bg=cyan]"
+        staged: "#[fg=#000000,bg=cyan,bold]"
+        conflict: "#[fg=#000000,bg=cyan,bold]"
+        modified: "#[fg=#000000,bg=cyan,bold]"
+        untracked: "#[fg=#000000,bg=cyan,bold]"
+        stashed: "#[fg=#000000,bg=cyan,bold]"
+        insertions: "#[fg=#000000,bg=cyan]"
+        deletions: "#[fg=#000000,bg=cyan]"
+        clean: "#[fg=#000000,bg=cyan,bold]"
+
+    layout: [" ", branch, divergence, " "]
+
+    options:
+        branch_max_len: 0
+        branch_trim: right
+        ellipsis: …
+        hide_clean: true
+        swap_divergence: false
+        divergence_space: false
+        flags_without_count: true
