@@ -9,3 +9,4 @@ quick-terminal-size = 70%
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 theme = Abernathy
+font-thicken = true
