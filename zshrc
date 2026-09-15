@@ -13,3 +13,4 @@ source ~/.zsh_fzf
 # For Sec env
 source ~/.SecEnv
 
+ANTHROPIC_AUTH_TOKEN=$DEEPSEEK_API_KEY
