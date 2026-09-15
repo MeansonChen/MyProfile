@@ -1,0 +1,123 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "brightYellow"
+      },
+      {
+        "id": "2",
+        "type": "separator"
+      },
+      {
+        "id": "3",
+        "type": "context-length",
+        "color": "brightBlue"
+      },
+      {
+        "id": "6",
+        "type": "separator",
+        "character": "-"
+      },
+      {
+        "id": "10027354-541f-41aa-9c04-0f8fe7b9b53e",
+        "type": "context-percentage-usable",
+        "color": "brightBlue"
+      },
+      {
+        "id": "cd41758f-4588-4340-88dd-95076a601959",
+        "type": "separator",
+        "character": "-"
+      },
+      {
+        "id": "15d45fa0-5684-4471-8f43-1dc5cba12e30",
+        "type": "compaction-counter",
+        "color": "brightBlue"
+      },
+      {
+        "id": "4e8ab665-6a74-47fe-beff-3c9143f946c9",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "5899e646-b93d-4c8b-9d17-a8c06b7db293",
+        "type": "tokens-cached"
+      },
+      {
+        "id": "20b249bd-6617-4168-8505-fb7de0c96fe7",
+        "type": "separator",
+        "character": "-"
+      },
+      {
+        "id": "f728cc67-f7c7-4862-95a8-2b577c3441d4",
+        "type": "total-speed"
+      },
+      {
+        "id": "d27ba9d2-77b2-47ae-b194-be0b499d0e45",
+        "type": "separator",
+        "character": "-"
+      },
+      {
+        "id": "e0f47d19-6ff1-4390-b4ae-a44b0e862771",
+        "type": "tokens-total"
+      },
+      {
+        "id": "193e3fa1-ff41-4caf-a9ea-1cac2bb0a9e9",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "121de4f0-35f6-411c-b559-d5df2e1abe4b",
+        "type": "cache-hit-rate"
+      },
+      {
+        "id": "6461db99-4cde-489d-864f-610a200b1262",
+        "type": "separator",
+        "character": "|"
+      },
+      {
+        "id": "a5a1cec5-7a13-46e7-b090-8f1bbe858af4",
+        "type": "thinking-effort"
+      },
+      {
+        "id": "a34645d1-0e74-4d80-9c54-83c31d53bf7f",
+        "type": "flex-separator",
+        "color": "brightBlack"
+      },
+      {
+        "id": "a2139a6f-59cc-413c-8f41-1d32f1d0109b",
+        "type": "custom-command",
+        "commandPath": "~/.claude/cc-ds-cost.sh",
+        "timeout": 3000
+      }
+    ],
+    [],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  },
+  "installation": {
+    "method": "pinned",
+    "installedVersion": "2.2.21"
+  }
+}
