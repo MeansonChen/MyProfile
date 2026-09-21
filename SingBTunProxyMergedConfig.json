@@ -1,0 +1,310 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-direct",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "tls",
+        "tag": "dns-proxy",
+        "detour": "proxy",
+        "server": "8.8.8.8"
+      }
+    ],
+    "rules": [
+      {
+        "clash_mode": "Direct",
+        "server": "dns-direct"
+      },
+      {
+        "clash_mode": "Global",
+        "server": "dns-proxy"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-proxy",
+    "strategy": "ipv4_only"
+  },
+  "http_clients": [
+    {
+      "tag": "download-client",
+      "version": 2,
+      "detour": "proxy"
+    }
+  ],
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": "172.19.0.1/30",
+      "auto_route": true,
+      "route_exclude_address": [
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "169.254.0.0/16",
+        "224.0.0.0/4",
+        "255.255.255.255/32"
+      ]
+    },
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    },
+    {
+      "type": "http",
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1081
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "proxy",
+      "outbounds": [
+        "SS-01",
+        "SS-02",
+        "VLESS-01",
+        "VLESS-02",
+        "VLESS-03",
+        "VLESS-04"
+      ],
+      "default": "SS-01"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "SS-01",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_SS1_服务器",
+      "server_port": 8388,
+      "method": "REPLACE_SS1_加密方式",
+      "password": "REPLACE_SS1_密码"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "SS-02",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_SS2_服务器",
+      "server_port": 8388,
+      "method": "REPLACE_SS2_加密方式",
+      "password": "REPLACE_SS2_密码"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-01",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS1_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS1_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS1_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS1_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS1_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-02",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS2_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS2_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS2_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS2_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS2_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-03",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS3_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS3_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS3_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS3_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS3_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-04",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS4_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS4_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS4_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS4_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS4_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": [
+          "socks-in",
+          "http-in"
+        ],
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "inbound": [
+          "socks-in",
+          "http-in"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": "geosite-ads",
+        "action": "reject"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "action": "reject"
+      },
+      {
+        "port": 853,
+        "action": "reject"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "proxy"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "update_interval": "168h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-geolocation-!cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
+        "update_interval": "168h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "update_interval": "168h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ads",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "update_interval": "168h0m0s"
+      }
+    ],
+    "final": "proxy",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns-direct",
+    "default_http_client": "download-client"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "store_dns": true
+    }
+  }
+}

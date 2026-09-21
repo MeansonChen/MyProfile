@@ -1,0 +1,170 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-direct",
+        "server": "223.5.5.5"
+      }
+    ],
+    "final": "dns-direct",
+    "strategy": "ipv4_only"
+  },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    },
+    {
+      "type": "http",
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1081
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "proxy",
+      "outbounds": [
+        "SS-01",
+        "SS-02",
+        "VLESS-01",
+        "VLESS-02",
+        "VLESS-03",
+        "VLESS-04"
+      ],
+      "default": "SS-01"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "SS-01",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_SS1_服务器",
+      "server_port": 8388,
+      "method": "REPLACE_SS1_加密方式",
+      "password": "REPLACE_SS1_密码"
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "SS-02",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_SS2_服务器",
+      "server_port": 8388,
+      "method": "REPLACE_SS2_加密方式",
+      "password": "REPLACE_SS2_密码"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-01",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS1_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS1_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS1_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS1_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS1_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-02",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS2_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS2_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS2_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS2_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS2_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-03",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS3_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS3_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS3_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS3_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS3_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "VLESS-04",
+      "domain_resolver": "dns-direct",
+      "server": "REPLACE_VLESS4_服务器",
+      "server_port": 443,
+      "uuid": "REPLACE_VLESS4_UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "REPLACE_VLESS4_SNI",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "REPLACE_VLESS4_PUBLIC_KEY",
+          "short_id": "REPLACE_VLESS4_SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "final": "proxy",
+    "auto_detect_interface": true
+  }
+}
